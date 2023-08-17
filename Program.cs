@@ -10,50 +10,104 @@ Console.WriteLine("Lets play a game.");
     Console.WriteLine("1 - Easy -- 8 guesses.");
     Console.WriteLine("2 - Medium -- 6 guesses.");
     Console.WriteLine("3 - Hard -- 4 guesses.");
-    int difficultyLevel = int.Parse(Console.ReadLine());
+    Console.WriteLine("4 - Cheater -- Unlimited guesses.");
 
+    
+    string difficultyLevel = "";
     int guesses = 0;
-if(difficultyLevel == 1){
-    guesses = 8;
-}
-    //Inform the user if their guess was too high or too low, when they guess incorrectly.
-    else if(difficultyLevel == 2){
-    guesses = 6;
-}
-    else if(difficultyLevel == 3){
-    guesses = 4;
-}
+    bool intResultTryParse = false;
+    int intStr;
+    bool cheatMode = false;
+    while(!intResultTryParse){
+     intResultTryParse = int.TryParse(difficultyLevel, out intStr);
+            if(intResultTryParse){
+            if(intStr == 1){
+                guesses = 8;
+            }
+            else if(intStr == 2){
+                guesses = 6;
+            }
+            else if(intStr == 3){
+                guesses = 4;
+            }
+            else if(intStr == 4){
+                cheatMode = true;
+            }
+    } else {
+        Console.WriteLine("Please enter a difficulty level between 1 - 4");
+        difficultyLevel = Console.ReadLine();
+    }
+    }
 
     
-    Console.WriteLine("Guess the secret number?  ");
+   
     
-// Give the user four chances to guess the number.
-    for (int i = guesses;  i > 0; i --){
+if(cheatMode){
+ for (int i = 0;  i <= 0; i --){
 // Display a prompt for the user's guess.
-    Console.Write($"You have {i} guesses.   ");
+    Console.WriteLine($"You have unlimited guesses.   ");
+     Console.WriteLine("Guess the secret number   ?");
 // Take the user's guess as input and save it as a variable.
-    int userGuess = int.Parse(Console.ReadLine());
-
+    string userGuess = Console.ReadLine();
+    intResultTryParse = int.TryParse(userGuess, out intStr);
 // Compare the user's guess with the secret number.
 // Display a success message if the guess is correct, otherwise display a failure message.
-if(secretNumber==userGuess){
-    Console.WriteLine($"{userGuess} is a good guess.");
+while(!intResultTryParse){
+    Console.WriteLine("Please enter a numeric value between 1 and 10.");
+     userGuess = Console.ReadLine();
+     intResultTryParse = int.TryParse(userGuess, out intStr);
+}
+if(secretNumber==intStr){
+    Console.WriteLine($"{intStr} is a good guess.");
     break;
     }
     //Inform the user if their guess was too high or too low, when they guess incorrectly.
-    else if(secretNumber > userGuess)
+    else if(secretNumber > intStr)
     {
-    Console.WriteLine($"{userGuess} is a not a good guess.");
-    Console.WriteLine($"{userGuess} is lower than the secret number.");
+    Console.WriteLine($"{intStr} is a not a good guess.");
+    Console.WriteLine($"{intStr} is lower than the secret number.");
     }
-    else if(secretNumber < userGuess)
+    else if(secretNumber < intStr)
     {
-Console.WriteLine($"{userGuess} is a not a good guess.");
-    Console.WriteLine($"{userGuess} is higher than the secret number.");
+Console.WriteLine($"{intStr} is a not a good guess.");
+    Console.WriteLine($"{intStr} is higher than the secret number.");
     }
 
+}} else {
+    for (int i = guesses;  i > 0; i --){
+// Display a prompt for the user's guess.
+    Console.WriteLine($"You have {i} guesses.   ");
+     Console.WriteLine("Guess the secret number   ?");
+// Take the user's guess as input and save it as a variable.
+    string userGuess = Console.ReadLine();
+        intResultTryParse = int.TryParse(userGuess, out intStr);
+// Compare the user's guess with the secret number.
+// Display a success message if the guess is correct, otherwise display a failure message.
+while(!intResultTryParse){
+    Console.WriteLine("Please enter a numeric value between 1 and 10.");
+     userGuess = Console.ReadLine();
+     intResultTryParse = int.TryParse(userGuess, out intStr);
 }
 
+// Compare the user's guess with the secret number.
+// Display a success message if the guess is correct, otherwise display a failure message.
+if(secretNumber==intStr){
+    Console.WriteLine($"{intStr} is a good guess.");
+    break;
+    }
+    //Inform the user if their guess was too high or too low, when they guess incorrectly.
+    else if(secretNumber > intStr)
+    {
+    Console.WriteLine($"{intStr} is a not a good guess.");
+    Console.WriteLine($"{intStr} is lower than the secret number.");
+    }
+    else if(secretNumber < intStr)
+    {
+Console.WriteLine($"{intStr} is a not a good guess.");
+    Console.WriteLine($"{intStr} is higher than the secret number.");
+    }
+}}
+   
        
 
     
