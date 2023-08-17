@@ -22,10 +22,18 @@ if(secretNumber==userGuess){
     Console.WriteLine($"{userGuess} is a good guess.");
     break;
     }
-    else
+    //Inform the user if their guess was too high or too low, when they guess incorrectly.
+    else if(secretNumber > userGuess)
     {
     Console.WriteLine($"{userGuess} is a not a good guess.");
+    Console.WriteLine($"{userGuess} is lower than the secret number.");
     }
+    else if(secretNumber < userGuess)
+    {
+Console.WriteLine($"{userGuess} is a not a good guess.");
+    Console.WriteLine($"{userGuess} is higher than the secret number.");
+    }
+
 }
   
 
